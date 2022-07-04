@@ -23,3 +23,7 @@ uuid = { version = "*", features = ["v4", "serde"] }
 chrono="*"
 log="*"
 config="*"
+env_logger="*"
+tracing = { version = "*", features = ["log"] }
+tracing-subscriber = { version = "*", features = ["registry", "env-filter"] }
+tracing-bunyan-formatter = "*"
