@@ -21,9 +21,13 @@ reqwest="*"
 sqlx = { version = "*", default-features = false, features = [ "runtime-actix-rustls", "macros", "postgres", "uuid", "chrono", "migrate", "offline"] }
 uuid = { version = "*", features = ["v4", "serde"] }
 chrono="*"
-log="*"
+# log="*"
 config="*"
-env_logger="*"
+# env_logger="*"
 tracing = { version = "*", features = ["log"] }
 tracing-subscriber = { version = "*", features = ["registry", "env-filter"] }
 tracing-bunyan-formatter = "*"
+tracing-log = "*"
+once_cell="*"
+secrecy = { version = "*", features = ["serde"] }
+tracing-actix-web="*"
