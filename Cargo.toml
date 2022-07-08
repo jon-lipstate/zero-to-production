@@ -32,3 +32,4 @@ tracing-log = "*"
 once_cell="*"
 secrecy = { version = "*", features = ["serde"] }
 tracing-actix-web="*"
+serde-aux = "*"

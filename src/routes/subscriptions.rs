@@ -1,8 +1,9 @@
-#![allow(dead_code)]
+#![allow(unused_imports)]
 //! src/routes/subscriptions.rs
 use actix_web::{web, HttpResponse};
+use chrono::Utc;
+use sqlx::types::Uuid;
 use sqlx::PgPool;
-
 #[derive(serde::Deserialize)]
 pub struct FormData {
     email: String,
@@ -33,20 +34,17 @@ pub async fn insert_subscriber(pool: &PgPool, form: &FormData) -> Result<(), sql
         r#"
     INSERT INTO subscriptions (id, email, name, subscribed_at)
     VALUES ($1, $2, $3, $4)
-    "#,
-        uuid::Uuid::new_v4(),
+            "#,
+        Uuid::new_v4(),
         form.email,
         form.name,
-        chrono::Utc::now()
+        Utc::now()
     )
     .execute(pool)
     .await
     .map_err(|e| {
         tracing::error!("Failed to execute query: {:?}", e);
         e
-        // Using the `?` operator to return early
-        // if the function failed, returning a sqlx::Error
-        // We will talk about error handling in depth later!
     })?;
     Ok(())
 }

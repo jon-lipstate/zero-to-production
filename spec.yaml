@@ -22,6 +22,22 @@ services:
       # !!! Fill in with your details
       # e.g. LukeMathWalker/zero-to-production
       repo: jon-lipstate/zero-to-production
+    envs:
+      - key: APP_DATABASE__USERNAME
+        scope: RUN_TIME
+        value: ${newsletter.USERNAME}
+      - key: APP_DATABASE__PASSWORD
+        scope: RUN_TIME
+        value: ${newsletter.PASSWORD}
+      - key: APP_DATABASE__HOST
+        scope: RUN_TIME
+        value: ${newsletter.HOSTNAME}
+      - key: APP_DATABASE__PORT
+        scope: RUN_TIME
+        value: ${newsletter.PORT}
+      - key: APP_DATABASE__DATABASE_NAME
+        scope: RUN_TIME
+        value: ${newsletter.DATABASE}
     # Active probe used by DigitalOcean's to ensure our application is healthy
     health_check:
       # The path to our health check endpoint!
@@ -37,3 +53,13 @@ services:
     # All incoming requests should be routed to our app
     routes:
       - path: /
+databases:
+  # PG = Postgres
+  - engine: PG
+    # Database name
+    name: newsletter
+    # Again, let's keep the bill lean
+    num_nodes: 1
+    size: db-s-dev-database
+    # Postgres version - using the latest here
+    version: "12"
