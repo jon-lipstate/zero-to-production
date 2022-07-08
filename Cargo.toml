@@ -19,6 +19,7 @@ tokio = { version = "*", features = ["macros", "rt-multi-thread"] }
 serde = { version = "*", features = ["derive"]}
 reqwest="*"
 sqlx = { version = "*", default-features = false, features = [ "runtime-actix-rustls", "macros", "postgres", "uuid", "chrono", "migrate", "offline"] }
+
 uuid = { version = "*", features = ["v4", "serde"] }
 chrono="*"
 # log="*"
