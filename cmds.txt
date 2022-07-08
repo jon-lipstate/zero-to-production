@@ -3,3 +3,5 @@ docker run -p 8000:8000 zero2prod
 
 curl http://127.0.0.1:8000/health_check
 
+
+cargo watch -x check -x test -x "sqlx prepare --check -- --lib"
