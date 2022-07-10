@@ -17,9 +17,7 @@ name = "zero2prod"
 "actix-web"="*"
 tokio = { version = "*", features = ["macros", "rt-multi-thread"] }
 serde = { version = "*", features = ["derive"]}
-reqwest="*"
 sqlx = { version = "*", default-features = false, features = [ "runtime-actix-rustls", "macros", "postgres", "uuid", "chrono", "migrate", "offline"] }
-
 uuid = { version = "*", features = ["v4", "serde"] }
 chrono="*"
 # log="*"
@@ -33,3 +31,16 @@ once_cell="*"
 secrecy = { version = "*", features = ["serde"] }
 tracing-actix-web="*"
 serde-aux = "*"
+unicode-segmentation = "*"
+validator="*"
+reqwest = { version = "*", default-features = false, features = ["json", "rustls-tls"] }
+
+[dev-dependencies]
+# reqwest = { version = "*", features = ["json"] }
+claim = "*"
+quickcheck = "0.9.2"
+quickcheck_macros = "0.9.1"
+fake = "*"
+once_cell = "*"
+wiremock="*"
+serde_json="*"

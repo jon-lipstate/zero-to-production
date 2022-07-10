@@ -38,6 +38,7 @@ then
   fi
   # Launch postgres using Docker
   docker run \
+      --network=host \
       -e POSTGRES_USER=${DB_USER} \
       -e POSTGRES_PASSWORD=${DB_PASSWORD} \
       -e POSTGRES_DB=${DB_NAME} \

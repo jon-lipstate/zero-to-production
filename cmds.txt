@@ -1,7 +1,9 @@
 docker build --tag zero2prod --file Dockerfile .
-docker run -p 8000:8000 zero2prod
+docker run -p 8000:8000 zero2prod --network=host
 
-curl http://127.0.0.1:8000/health_check
+cargo sqlx prepare --check -- --lib
 
+curl http://127.0.0.1:8000/health_check --verbose
+curl --request POST --data 'name=le%20guin&email=ursula_le_guin%40gmail.com' 127.0.0.1:8000/subscriptions --verbose
 
 cargo watch -x check -x test -x "sqlx prepare --check -- --lib"
