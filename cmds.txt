@@ -7,3 +7,7 @@ curl http://127.0.0.1:8000/health_check --verbose
 curl --request POST --data 'name=le%20guin&email=ursula_le_guin%40gmail.com' 127.0.0.1:8000/subscriptions --verbose
 
 cargo watch -x check -x test -x "sqlx prepare --check -- --lib"
+
+doctl apps update c0abc980-8270-45e1-8d33-e0c85d4167d2 --spec=spec.yaml
+
+doctl apps logs c0abc980-8270-45e1-8d33-e0c85d4167d2 > logs.log
