@@ -3,11 +3,21 @@ docker run -p 8000:8000 zero2prod --network=host
 
 cargo sqlx prepare --check -- --lib
 
+
 curl http://127.0.0.1:8000/health_check --verbose
+
 curl --request POST --data 'name=le%20guin&email=ursula_le_guin%40gmail.com' 127.0.0.1:8000/subscriptions --verbose
 
+curl --request POST --data 'name=le%20guin&email=ursula_le_guin%40gmail.com' https://zero2prod-i23i2.ondigitalocean.app/subscriptions --verbose
+
+https://zero2prod-i23i2.ondigitalocean.app/
+
 cargo watch -x check -x test -x "sqlx prepare --check -- --lib"
+
 
 doctl apps update c0abc980-8270-45e1-8d33-e0c85d4167d2 --spec=spec.yaml
 
 doctl apps logs c0abc980-8270-45e1-8d33-e0c85d4167d2 > logs.log
+
+DATABASE_URL=REMOTE_CONNECTION_STRING_POSTGRESS sqlx migrate run
+
