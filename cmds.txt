@@ -21,3 +21,7 @@ doctl apps logs c0abc980-8270-45e1-8d33-e0c85d4167d2 > logs.log
 
 DATABASE_URL=REMOTE_CONNECTION_STRING_POSTGRESS sqlx migrate run
 
+#Testing with logs:
+export RUST_LOG="sqlx=error,info"
+export TEST_LOG=enabled
+cargo t subscribe_fails_if_there_is_a_fatal_database_error | bunyan

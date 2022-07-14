@@ -35,7 +35,10 @@ unicode-segmentation = "*"
 validator="*"
 reqwest = { version = "*", default-features = false, features = ["json", "rustls-tls"] }
 rand = { version = "*", features=["std_rng"] }
-
+thiserror="*"
+anyhow="*"
+base64="*"
+sha3="*"
 [dev-dependencies]
 # reqwest = { version = "*", features = ["json"] }
 claim = "*"

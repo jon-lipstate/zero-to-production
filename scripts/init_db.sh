@@ -38,7 +38,6 @@ then
   fi
   # Launch postgres using Docker
   docker run \
-      #--network=host \
       -e POSTGRES_USER=${DB_USER} \
       -e POSTGRES_PASSWORD=${DB_PASSWORD} \
       -e POSTGRES_DB=${DB_NAME} \
@@ -46,6 +45,7 @@ then
       -d \
       --name "postgres_$(date '+%s')" \
       postgres -N 1000
+      #--network=host \
       # ^ Increased maximum number of connections for testing purposes
 fi
 
