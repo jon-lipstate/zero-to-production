@@ -33,12 +33,18 @@ tracing-actix-web="*"
 serde-aux = "*"
 unicode-segmentation = "*"
 validator="*"
-reqwest = { version = "*", default-features = false, features = ["json", "rustls-tls"] }
 rand = { version = "*", features=["std_rng"] }
 thiserror="*"
 anyhow="*"
 base64="*"
 sha3="*"
+argon2 = { version = "*", features = ["std"] }
+actix-web-flash-messages = { version = "*", features = ["cookies"] }
+actix-session = { version = "*", features = ["redis-rs-tls-session"] }
+serde_json = "*"
+actix-web-lab="*"
+reqwest = { version = "*", default-features = false, features = ["json", "rustls-tls","cookies"] }
+
 [dev-dependencies]
 # reqwest = { version = "*", features = ["json"] }
 claim = "*"
@@ -48,4 +54,10 @@ fake = "*"
 once_cell = "*"
 wiremock="*"
 serde_json="*"
+serde_urlencoded = "*"
 linkify="*"
+urlencoding="*"
+htmlescape="*"
+hmac = { version = "*", features = ["std"] }
+# sha2 = "*"
+# hex="*"

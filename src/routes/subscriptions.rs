@@ -4,12 +4,12 @@ use crate::startup::ApplicationBaseUrl;
 use actix_web::http::StatusCode;
 use actix_web::{web, HttpResponse, ResponseError};
 use anyhow::Context;
-// use chrono::Utc;
+use chrono::Utc;
 use rand::distributions::Alphanumeric;
 use rand::{thread_rng, Rng};
 use sqlx::{PgPool, Postgres, Transaction};
 use std::convert::{TryFrom, TryInto};
-// use uuid::Uuid;
+use uuid::Uuid;
 
 #[derive(serde::Deserialize)]
 pub struct FormData {
@@ -133,8 +133,8 @@ pub async fn send_confirmation_email(
 pub async fn insert_subscriber(
     transaction: &mut Transaction<'_, Postgres>,
     new_subscriber: &NewSubscriber,
-) -> Result<sqlx::types::Uuid, sqlx::Error> {
-    let subscriber_id = sqlx::types::Uuid::new_v4();
+) -> Result<Uuid, sqlx::Error> {
+    let subscriber_id = Uuid::new_v4();
     sqlx::query!(
         r#"
     INSERT INTO subscriptions (id, email, name, subscribed_at, status)
@@ -143,7 +143,7 @@ pub async fn insert_subscriber(
         subscriber_id,
         new_subscriber.email.as_ref(),
         new_subscriber.name.as_ref(),
-        sqlx::types::chrono::Utc::now()
+        Utc::now()
     )
     .execute(transaction)
     .await?;
@@ -156,7 +156,7 @@ pub async fn insert_subscriber(
 )]
 pub async fn store_token(
     transaction: &mut Transaction<'_, Postgres>,
-    subscriber_id: sqlx::types::Uuid,
+    subscriber_id: Uuid,
     subscription_token: &str,
 ) -> Result<(), StoreTokenError> {
     sqlx::query!(
